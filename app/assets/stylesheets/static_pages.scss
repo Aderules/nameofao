@@ -1,7 +1,23 @@
 // Place all the styles related to the static_pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-h1{
+
+
+
+
+h1 {
 font-family : "Palatino Linotype", "Book Antiqua", Palatino, serif;
-font-color : #4000ff;
+font-size : 20px;
+color: lightblue;
+text-align : center;
 }
+
+.site-footer {
+	height: 100px;
+	background: skyblue;
+}
+
+.img-responsive {
+	margin: auto;
+}
+
