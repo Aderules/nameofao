@@ -5,21 +5,7 @@
 <div class="container">
   <div class="row">
     <% @products.each do |product| %>
-      <div class="col-sm-2 col-md-4">
-        <div class="hovereffect">
-          <%= image_tag(product.image_url, class: "img-responsive img-circle") %>
-          <div class="overlay">
-            <h1><%= product.name %></h1>
-          </div><!-- overlay -->
-        </div><!-- hovereffect -->
-          <p><%= product.description %></p>
-          <%= product.price %>
-          <%= product.colour %>
-          <%= link_to 'Show', product %></td>
-          <%= link_to 'Edit', edit_product_path(product) %>
-          <%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %>
-          
-    </div><!-- /col -->
+      <%= render @products %>
     <% end %>
   </div>
 </div>
