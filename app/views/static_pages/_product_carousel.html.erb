@@ -1,3 +1,10 @@
 <% @products.each do |product| %>
-    <% end %>
+    <div class="item<%= " active" if product == @products.first %>">
+       <%= image_tag(product.image_url) %>
+       <div class="carousel-caption">
+       	<%= product.name %>
+       </div>
+    </div>
+ <% end %>
+    
   
