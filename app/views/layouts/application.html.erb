@@ -39,7 +39,11 @@
                     <li role="separator" class="divider"></li>
                     <li><a href="#">Blog</a></li>
                   </ul>
-                </li>
+                </li> 
+                  <%= form_tag("/products", method: "get",class: 'navbar-form navbar-left', role: 'search') do %>
+                    <%= text_field_tag :q, "", class: 'form-control', placeholder: 'Search'%>
+                     <%= submit_tag("Search") %> 
+                    <% end %>
                 <ul class="nav navbar-nav navbar-right">
                   <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
                 <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
@@ -50,6 +54,14 @@
         </div><!--/.container-fluid -->
       </nav>
     </div><!-- /.container -->
+    <div id="main-container" class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <% flash.each do |name, msg| -%>
+            <%= content_tag :div, msg, class: "alert alert-#{name}" %>
+          <% end %>
+        </div>
+      </div>
 
 <%= yield %>
 
