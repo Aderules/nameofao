@@ -5,7 +5,6 @@
     
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
@@ -42,11 +41,18 @@
                 </li> 
                   <%= form_tag("/products", method: "get",class: 'navbar-form navbar-left', role: 'search') do %>
                     <%= text_field_tag :q, "", class: 'form-control', placeholder: 'Search'%>
-                     <%= submit_tag("Search") %> 
+                    <%= button_tag type: "submit", class: "btn btn-default" do %><span class="glyphicon glyphicon-search"></span>
                     <% end %>
+                  <% end %>
                 <ul class="nav navbar-nav navbar-right">
-                  <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    <li>
+                    <% if user_signed_in? %>
+                      <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+                    <% else %>
+                      <%= link_to('Login',new_user_session_path) %>
+                    <% end %>
+                    </li>
+                  </ul>
                 <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart</a></li>
                 </ul>
   		      </ul>
@@ -54,6 +60,7 @@
         </div><!--/.container-fluid -->
       </nav>
     </div><!-- /.container -->
+    <p class="Welcome to Yats"><%= notice %></p>
     <div id="main-container" class="container">
       <div class="row">
         <div class="col-xs-12">

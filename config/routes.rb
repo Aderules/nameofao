@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :users, :path => '', :path_nmes => {:sign_in => 'login', :aign_out => 'logout'}
+  resources :users
   resources :products
   get '/static_pages/about' 
 
