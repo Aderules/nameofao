@@ -1,4 +1,81 @@
-<% content_for :body do %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Nameofao</title>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <%= csrf_meta_tags %>
+  </head>
+  <body id="sessions">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#myNavbar" aria expanded="false">
+  		      <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">
+            <%= image_tag("lily_logo.jpg", class: "img-responsive img-circle") %>
+        </div> <!-- navbar-header -->
+        <!-- Collect the nav links, forms and other content for toggling -->
+        <div id="myNavbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+    		      <li class="active"><%= link_to "Home", static_pages_index_path %><span class="sr-only"(current)></span></li>
+    		      <li><%= link_to "About", static_pages_about_path %></li>
+    		      <li><%= link_to "Contact", static_pages_contact_path %></li>
+              <li><%= link_to "Products", products_path %></li>
+              <li class="dropdown">
+                <a href="#"class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Stuff<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">Blog</a></li>
+                  </ul>
+                </li> 
+                  <%= form_tag("/products", method: "get",class: 'navbar-form navbar-left', role: 'search') do %>
+                    <%= text_field_tag :q, "", class: 'form-control', placeholder: 'Search'%>
+                    <%= button_tag type: "submit", class: "btn btn-default" do %><span class="glyphicon glyphicon-search"></span>
+                    <% end %>
+                  <% end %>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                    <% if user_signed_in? %>
+                      <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+                    <% else %>
+                      <%= link_to('Login',new_user_session_path) %>
+                    <% end %>
+                    </li>
+                  </ul>
+                <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart</a></li>
+                </ul>
+  		      </ul>
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </nav>
+    </div><!-- /.container -->
+    <p class="Welcome to Yats"></p>
+    <div id="main-container" class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <% flash.each do |name, msg| -%>
+            <%= content_tag :div, msg, class: "alert alert-#{name}" %>
+          <% end %>
+        </div>
+      </div>
 
-<%= content_tag(:iframe, "", src: "//giphy.com/embed/eZE0tBLsrhCqQ", width: "480", height: "480", frameBorder: "0", class: "giphy-embed", allowFullScreen: "true") %> 
-<% end %>
+<%= yield %>
+
+<footer class="site-footer">
+  &copy; 2017 Yats Unik Kollections
+</footer>
+  </body>
+</html>
+
+ 
